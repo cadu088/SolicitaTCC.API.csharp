@@ -965,11 +965,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\carlo\\source\\repos\\SolicitaTCC.API.csharp\\SolicitaTCC.API.csharp\\SolicitaTCC.API.csharp.csproj",
+      "projectUniqueName": "C:\\Users\\carlo\\OneDrive\\Documentos\\GitHub\\SolicitaTCC.API.csharp\\SolicitaTCC.API.csharp\\SolicitaTCC.API.csharp.csproj",
       "projectName": "SolicitaTCC.API.csharp",
-      "projectPath": "C:\\Users\\carlo\\source\\repos\\SolicitaTCC.API.csharp\\SolicitaTCC.API.csharp\\SolicitaTCC.API.csharp.csproj",
+      "projectPath": "C:\\Users\\carlo\\OneDrive\\Documentos\\GitHub\\SolicitaTCC.API.csharp\\SolicitaTCC.API.csharp\\SolicitaTCC.API.csharp.csproj",
       "packagesPath": "C:\\Users\\carlo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\carlo\\source\\repos\\SolicitaTCC.API.csharp\\SolicitaTCC.API.csharp\\obj\\",
+      "outputPath": "C:\\Users\\carlo\\OneDrive\\Documentos\\GitHub\\SolicitaTCC.API.csharp\\SolicitaTCC.API.csharp\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\carlo\\AppData\\Roaming\\NuGet\\NuGet.Config",

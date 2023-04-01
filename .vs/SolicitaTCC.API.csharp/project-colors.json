@@ -5,6 +5,11 @@
       "ProjectGuid": "76a9a233-b200-4aa9-9e52-055438990694",
       "DisplayName": "SolicitaTCC.API.csharp",
       "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Arquivos Diversos",
+      "ColorIndex": -1
     }
   },
   "NextColorIndex": 1

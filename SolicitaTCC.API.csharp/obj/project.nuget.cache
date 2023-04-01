@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YwZiMPizLoJNdqFd0ScOnfVwwDsG+kJhphHpj2JK+ugb3aXmEWPGLMBl5opeDs8Ee7QE8d/mhixVrxQkfq/1aw==",
+  "dgSpecHash": "xy2RuYqxlYbzmo/3D4/UO91Ttp6AnQ8LGMthXGX2bDoTiccl69jZwIHhRhB9N4cLqHbmA8gdCO1N4U0cTAWaBw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\carlo\\source\\repos\\SolicitaTCC.API.csharp\\SolicitaTCC.API.csharp\\SolicitaTCC.API.csharp.csproj",
+  "projectFilePath": "C:\\Users\\carlo\\OneDrive\\Documentos\\GitHub\\SolicitaTCC.API.csharp\\SolicitaTCC.API.csharp\\SolicitaTCC.API.csharp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.aspnetcore.authorization\\7.0.4\\microsoft.aspnetcore.authorization.7.0.4.nupkg.sha512",
     "C:\\Users\\carlo\\.nuget\\packages\\microsoft.aspnetcore.metadata\\7.0.4\\microsoft.aspnetcore.metadata.7.0.4.nupkg.sha512",
