@@ -78,3 +78,7 @@ C:\Users\carlo\OneDrive\Documentos\GitHub\SolicitaTCC.API.csharp\SolicitaTCC.API
 C:\Users\carlo\OneDrive\Documentos\GitHub\SolicitaTCC.API.csharp\SolicitaTCC.API.csharp\obj\Debug\net6.0\SolicitaTCC.API.csharp.genruntimeconfig.cache
 C:\Users\carlo\OneDrive\Documentos\GitHub\SolicitaTCC.API.csharp\SolicitaTCC.API.csharp\obj\Debug\net6.0\SolicitaTCC.API.csharp.Properties.Resources.resources
 C:\Users\carlo\OneDrive\Documentos\GitHub\SolicitaTCC.API.csharp\SolicitaTCC.API.csharp\obj\Debug\net6.0\SolicitaTCC.API.csharp.csproj.GenerateResource.cache
+C:\Users\carlo\OneDrive\Documentos\GitHub\SolicitaTCC.API.csharp\SolicitaTCC.API.csharp\bin\Debug\net6.0\System.Net.Http.Formatting.dll
+C:\Users\carlo\OneDrive\Documentos\GitHub\SolicitaTCC.API.csharp\SolicitaTCC.API.csharp\bin\Debug\net6.0\System.Web.Http.dll
+C:\Users\carlo\OneDrive\Documentos\GitHub\SolicitaTCC.API.csharp\SolicitaTCC.API.csharp\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\carlo\OneDrive\Documentos\GitHub\SolicitaTCC.API.csharp\SolicitaTCC.API.csharp\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll

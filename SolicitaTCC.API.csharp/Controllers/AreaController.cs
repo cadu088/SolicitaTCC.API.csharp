@@ -1,11 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SolicitaTCC.API.csharp.Services;
 using SolicitaTCC.API.csharp.Models;
+//using System.Web.Http;
+using Microsoft.AspNetCore.Cors;
 
 namespace SolicitaTCC.API.csharp.Controllers
 {
     [ApiController]
     [Route("area")]
+    //[EnableCors(origins: "http://example.com", headers: "*", methods: "*")]
+    
+    //[DisableCors]
     public class AreaController : Controller
     {
         [Route("getAll")]
