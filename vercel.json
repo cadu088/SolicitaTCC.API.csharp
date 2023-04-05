@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "path/to/your/project.csproj",
+      "use": "@vercel/dotnet-builder"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "http://localhost:5000"
+    }
+  ]
+}
