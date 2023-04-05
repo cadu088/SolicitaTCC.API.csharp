@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "path/to/your/project.csproj",
+      "src": " SolicitaTCC.API.csharp/SolicitaTCC.API.csharp/SolicitaTCC.API.csharp.csproj",
       "use": "@vercel/dotnet-builder"
     }
   ],
