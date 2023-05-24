@@ -78,5 +78,61 @@ namespace SolicitaTCC.API.csharp.Services
             }
         }
 
+        public List<RequestWorkers> ListRequest(getRequestsWorker data)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(connectionString);
+                DataTable dt1 = new DataTable();
+                using (SqlDataAdapter adp = new SqlDataAdapter(@"EXEC PR_PEGA_SOLICITACAO @ID_ALUNO, @ID_PROFESSOR", conn))
+                {
+                    adp.SelectCommand.CommandType = CommandType.Text;
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@ID_ALUNO", Convert.ToInt32(data.ID_ALUNO)));
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@ID_PROFESSOR", Convert.ToInt32(data.ID_PROFESSOR)));
+
+
+                    adp.Fill(dt1);
+
+                    if (dt1.Rows.Count > 0)
+                    {
+
+                        List<RequestWorkers> response = new List<RequestWorkers>();
+                        LoginService loginService = new LoginService();
+
+                        foreach (DataRow row in dt1.Rows)
+                        {
+                            RequestWorkers request = new RequestWorkers();
+
+                            request.ID_SOLICITACAO = Convert.ToInt32(row["ID_SOLICITACAO"]);
+                            request.ALUNO = loginService.GetPeople(new Login(row["ID_ALUNO"].ToString()));
+                            request.PROFESSOR = loginService.GetPeople(new Login(row["ID_PROFESSOR"].ToString()));
+                            request.ID_SITUACAO = Convert.ToInt32(row["ID_SITUACAO"]);
+                            request.SITUACAO = row["SITUACAO"].ToString();
+                            request.NOME = row["NOME"].ToString();
+                            request.DESCRICAO = row["DESCRICAO"].ToString();
+                            request.DT_APROVACAO = row["DT_APROVACAO"].ToString();
+                            request.DT_REPROVACAO = row["DT_REPROVACAO"].ToString();
+                            request.JUSTIFICATIVA = row["JUSTIFICATIVA"].ToString();
+                            request.PESSOA_REPROVACAO = row["ID_PESSOA_REPROVACAO"].ToString() != "" ? loginService.GetPeople(new Login(row["ID_PESSOA_REPROVACAO"].ToString())) : null;
+                            request.DT_CADASTRO = row["DT_CADASTRO"].ToString();
+                            request.FL_ATIVO = Convert.ToInt32(row["FL_ATIVO"]);
+
+                            response.Add(request);
+                        }
+
+                        return response;
+                    }
+                    else
+                    {
+                        throw new Exception("Nenhuma solcitação para esses parametros!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }
