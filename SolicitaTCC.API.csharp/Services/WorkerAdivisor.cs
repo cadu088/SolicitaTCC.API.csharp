@@ -134,5 +134,63 @@ namespace SolicitaTCC.API.csharp.Services
             }
         }
 
+        public bool CancelRequest(cancelRequestsWorker data)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(connectionString);
+                DataTable dt1 = new DataTable();
+                using (SqlDataAdapter adp = new SqlDataAdapter(@"EXEC PR_REPROVA_SOLICITACAO @ID_PROFESSOR, @ID_SOLICITACAO, @JUSTIFICATIVA", conn))
+                {
+                    adp.SelectCommand.CommandType = CommandType.Text;
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@ID_SOLICITACAO", Convert.ToInt32(data.ID_SOLICITACAO)));
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@ID_PROFESSOR", Convert.ToInt32(data.ID_PROFESSOR)));
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@JUSTIFICATIVA", data.JUSTIFICATIVA));
+
+
+                    adp.Fill(dt1);
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public bool CreateProject(createProjectWorker data)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(connectionString);
+                DataTable dt1 = new DataTable();
+                using (SqlDataAdapter adp = new SqlDataAdapter(@"EXEC PR_CRIACAO_PROJETO @ID_PROFESSOR, @ID_ALUNO, @ID_SOLICITACAO", conn))
+                {
+                    adp.SelectCommand.CommandType = CommandType.Text;
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@ID_SOLICITACAO", Convert.ToInt32(data.ID_SOLICITACAO)));
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@ID_PROFESSOR", Convert.ToInt32(data.ID_PROFESSOR)));
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@ID_ALUNO", Convert.ToInt32(data.ID_ALUNO)));
+
+
+                    adp.Fill(dt1);
+                    if (dt1.Rows.Count > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

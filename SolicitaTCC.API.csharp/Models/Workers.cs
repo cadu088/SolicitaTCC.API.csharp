@@ -50,6 +50,21 @@ namespace SolicitaTCC.API.csharp.Models
         public int ID_PROFESSOR { get; set; }
 
     }
+    public class cancelRequestsWorker
+    {
+        public int ID_PROFESSOR { get; set; }
+        public string JUSTIFICATIVA { get; set; }
+        public int ID_SOLICITACAO { get; set; }
+
+    }
+
+    public class createProjectWorker
+    {
+        public int ID_ALUNO { get; set; }
+        public int ID_PROFESSOR { get; set; }
+        public int ID_SOLICITACAO { get; set; }
+
+    }
 
 
 
