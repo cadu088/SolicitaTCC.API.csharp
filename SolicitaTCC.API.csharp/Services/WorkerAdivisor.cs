@@ -192,5 +192,90 @@ namespace SolicitaTCC.API.csharp.Services
             }
         }
 
+        public List<ProjectWorkers> ListProject(getRequestsWorker data)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(connectionString);
+                DataTable dt1 = new DataTable();
+                using (SqlDataAdapter adp = new SqlDataAdapter(@"EXEC PR_PEGA_PROJETO @ID_PROFESSOR, @ID_ALUNO", conn))
+                {
+                    adp.SelectCommand.CommandType = CommandType.Text;
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@ID_ALUNO", Convert.ToInt32(data.ID_ALUNO)));
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@ID_PROFESSOR", Convert.ToInt32(data.ID_PROFESSOR)));
+
+
+                    adp.Fill(dt1);
+
+                    if (dt1.Rows.Count > 0)
+                    {
+
+                        List<ProjectWorkers> response = new List<ProjectWorkers>();
+                        LoginService loginService = new LoginService();
+
+                        foreach (DataRow row in dt1.Rows)
+                        {
+                            ProjectWorkers request = new ProjectWorkers();
+
+                            request.ID_SOLICITACAO = Convert.ToInt32(row["ID_SOLICITACAO"]);
+                            request.ID_PROJETO = Convert.ToInt32(row["ID_PROJETO"]);
+                            request.ALUNO = loginService.GetPeople(new Login(row["ID_ALUNO"].ToString()));
+                            request.PROFESSOR = loginService.GetPeople(new Login(row["ID_PROFESSOR"].ToString()));
+                            request.ID_SITUACAO_PROJETO = Convert.ToInt32(row["ID_SITUACAO_PROJETO"]);
+                            request.SITUACAO_PROJETO = row["SITUACAO_PROJETO"].ToString();
+                            request.DT_INICIO = row["DT_INICIO"].ToString();
+                            request.DT_FIM = row["DT_FIM"].ToString();
+                            request.NOME = row["NOME"].ToString();
+                            request.DESCRICAO = row["DESCRICAO"].ToString();
+                            request.DT_APROVACAO = row["DT_APROVACAO"].ToString();
+                            request.DT_REPROVACAO = row["DT_REPROVACAO"].ToString();
+                            request.JUSTIFICATIVA = row["JUSTIFICATIVA"].ToString();
+                            request.PESSOA_CANCELAMENTO = row["ID_PESSOA_CANCELAMENTO"].ToString() != "" ? loginService.GetPeople(new Login(row["ID_PESSOA_CANCELAMENTO"].ToString())) : null;
+                            request.DT_CADASTRO = row["DT_CADASTRO"].ToString();
+                            request.FL_ATIVO = Convert.ToInt32(row["FL_ATIVO"]);
+
+                            response.Add(request);
+                        }
+
+                        return response;
+                    }
+                    else
+                    {
+                        throw new Exception("Nenhuma solcitação para esses parametros!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public bool updateSituationProject(updtProjectWorker data)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(connectionString);
+                DataTable dt1 = new DataTable();
+                using (SqlDataAdapter adp = new SqlDataAdapter(@"EXEC PR_ATUALIZA_STATUS_PROJETO @ID_PROJETO, @ID_SITUACAO_PROJETO, @ID_PESSOA, @JUSTIFICATIVA", conn))
+                {
+                    adp.SelectCommand.CommandType = CommandType.Text;
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@ID_PROJETO", Convert.ToInt32(data.ID_PROJETO)));
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@ID_SITUACAO_PROJETO", Convert.ToInt32(data.ID_STATUS)));
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@ID_PESSOA", Convert.ToInt32(data.ID_PESSOA)));
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@JUSTIFICATIVA", data.JUSTIFICATIVA));
+
+
+                    adp.Fill(dt1);
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

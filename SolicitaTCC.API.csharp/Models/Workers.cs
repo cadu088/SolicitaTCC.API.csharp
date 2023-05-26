@@ -35,6 +35,27 @@ namespace SolicitaTCC.API.csharp.Models
 
     }
 
+    public class ProjectWorkers
+    {
+        public int ID_PROJETO { get; set; }
+        public int ID_SOLICITACAO { get; set; }
+        public Pessoa ALUNO { get; set; }
+        public Pessoa PROFESSOR { get; set; }
+        public int ID_SITUACAO_PROJETO { get; set; }
+        public string SITUACAO_PROJETO { get; set; }
+        public string DT_INICIO { get; set; }
+        public string DT_FIM { get; set; }
+        public string NOME { get; set; }
+        public string DESCRICAO { get; set; }
+        public string DT_APROVACAO { get; set; }
+        public string DT_REPROVACAO { get; set; }
+        public string JUSTIFICATIVA { get; set; }
+        public Pessoa PESSOA_CANCELAMENTO { get; set; }
+        public string DT_CADASTRO { get; set; }
+        public int FL_ATIVO { get; set; }
+
+    }
+
     public class postRequestWorker
     {
         public int ID_ALUNO { get; set; }
@@ -48,6 +69,14 @@ namespace SolicitaTCC.API.csharp.Models
     {
         public int ID_ALUNO { get; set; }
         public int ID_PROFESSOR { get; set; }
+
+    }
+    public class updtProjectWorker
+    {
+        public int ID_PROJETO { get; set; }
+        public int ID_STATUS { get; set; }
+        public int ID_PESSOA { get; set; }
+        public string JUSTIFICATIVA { get; set; }
 
     }
     public class cancelRequestsWorker

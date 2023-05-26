@@ -91,5 +91,37 @@ namespace SolicitaTCC.API.csharp.Controllers
                 return BadRequest(new { success = false, mensagem = ex.Message });
             }
         }
+
+        [Route("getProject")]
+        [HttpPost]
+        public IActionResult getProjects(getRequestsWorker data)
+        {
+            try
+            {
+                WorkerAdivisor sendRequest = new WorkerAdivisor();
+                var Results = sendRequest.ListProject(data);
+                return Ok(new { success = true, result = Results });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, mensagem = ex.Message });
+            }
+        }
+
+        [Route("updateProjectSituation")]
+        [HttpPut]
+        public IActionResult updateProjectSituation(updtProjectWorker data)
+        {
+            try
+            {
+                WorkerAdivisor sendRequest = new WorkerAdivisor();
+                var Results = sendRequest.updateSituationProject(data);
+                return Ok(new { success = true, result = Results });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, mensagem = ex.Message });
+            }
+        }
     }
 }
