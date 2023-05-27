@@ -308,7 +308,7 @@ namespace SolicitaTCC.API.csharp.Services
                     }
                     else
                     {
-                        throw new Exception("Nenhuma solcitação para esses parametros!");
+                        throw new Exception("Nenhum estagio para esses parametros!");
                     }
                 }
             }
@@ -349,6 +349,59 @@ namespace SolicitaTCC.API.csharp.Services
             catch (Exception ex)
             {
                 return false;
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<getTask> getTask(getTaskWorker data)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(connectionString);
+                DataTable dt1 = new DataTable();
+                using (SqlDataAdapter adp = new SqlDataAdapter(@"EXEC PR_PEGA_TAREFA @ID_PROJETO", conn))
+                {
+                    adp.SelectCommand.CommandType = CommandType.Text;
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@ID_PROJETO", Convert.ToInt32(data.ID_PROJETO)));
+
+                    adp.Fill(dt1);
+
+                    if (dt1.Rows.Count > 0)
+                    {
+
+                        List<getTask> response = new List<getTask>();
+
+                        foreach (DataRow row in dt1.Rows)
+                        {
+                            getTask request = new getTask();
+
+                            request.ID_TAREFA = Convert.ToInt32(row["ID_TAREFA"]);
+                            request.ID_PROJETO = Convert.ToInt32(row["ID_PROJETO"]);
+                            request.ID_ETAPA = Convert.ToInt32(row["ID_ETAPA"]);
+                            request.ETAPA = row["ETAPA"].ToString();
+                            request.TITULO = row["TITULO"].ToString();
+                            request.DESCRICAO = row["DESCRICAO"].ToString();
+                            request.DT_INICIO = row["DT_INICIO"].ToString();
+                            request.DT_PREVISTA = row["DT_PREVISTA"].ToString();
+                            request.FL_FINALIZADA = Convert.ToInt32(row["FL_FINALIZADA"]);
+                            request.DT_FINALIZADA = row["DT_FINALIZADA"].ToString();
+                            request.DT_CADASTRO = row["DT_CADASTRO"].ToString();
+                            request.FL_ATIVO = Convert.ToInt32(row["FL_ATIVO"]);
+
+
+                            response.Add(request);
+                        }
+
+                        return response;
+                    }
+                    else
+                    {
+                        throw new Exception("Nenhuma tarefa para esses parametros!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
                 throw new Exception(ex.Message);
             }
         }

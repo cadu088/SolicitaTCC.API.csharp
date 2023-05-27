@@ -87,6 +87,27 @@ namespace SolicitaTCC.API.csharp.Models
         public string DT_PREVISTA { get; set; }
 
     }
+    public class getTaskWorker
+    {
+        public int ID_PROJETO { get; set; }
+    }
+
+    public class getTask
+    {
+        public int ID_TAREFA { get; set; }
+        public int ID_PROJETO { get; set; }
+        public int ID_ETAPA { get; set; }
+        public string ETAPA { get; set; }
+        public string TITULO { get; set; }
+        public string DESCRICAO { get; set; }
+        public string DT_INICIO { get; set; }
+        public string DT_PREVISTA { get; set; }
+        public int FL_FINALIZADA { get; set; }
+        public string DT_FINALIZADA { get; set; }
+        public string DT_CADASTRO { get; set; }
+        public int FL_ATIVO { get; set; }
+
+    }
     public class updtProjectWorker
     {
         public int ID_PROJETO { get; set; }
