@@ -92,6 +92,11 @@ namespace SolicitaTCC.API.csharp.Models
         public int ID_PROJETO { get; set; }
     }
 
+    public class concludedTask
+    {
+        public int ID_TAREFA { get; set; }
+    }
+
     public class getTask
     {
         public int ID_TAREFA { get; set; }

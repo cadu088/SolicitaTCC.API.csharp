@@ -171,5 +171,21 @@ namespace SolicitaTCC.API.csharp.Controllers
                 return BadRequest(new { success = false, mensagem = ex.Message });
             }
         }
+
+        [Route("concludedTask")]
+        [HttpPut]
+        public IActionResult concludedTask(concludedTask data)
+        {
+            try
+            {
+                WorkerAdivisor sendRequest = new WorkerAdivisor();
+                var Results = sendRequest.concludedTask(data);
+                return Ok(new { success = true, result = Results });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { success = false, mensagem = ex.Message });
+            }
+        }
     }
 }

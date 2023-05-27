@@ -406,5 +406,29 @@ namespace SolicitaTCC.API.csharp.Services
             }
         }
 
+        public bool concludedTask(concludedTask data)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(connectionString);
+                DataTable dt1 = new DataTable();
+                using (SqlDataAdapter adp = new SqlDataAdapter(@"EXEC PR_CONCLUI_TAREFA @ID_TAREFA", conn))
+                {
+                    adp.SelectCommand.CommandType = CommandType.Text;
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@ID_TAREFA", Convert.ToInt32(data.ID_TAREFA)));
+                   
+
+                    adp.Fill(dt1);
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
     }
 }
