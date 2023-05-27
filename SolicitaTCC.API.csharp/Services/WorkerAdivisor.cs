@@ -318,6 +318,40 @@ namespace SolicitaTCC.API.csharp.Services
             }
         }
 
+        public bool createTask(createTask data)
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(connectionString);
+                DataTable dt1 = new DataTable();
+                using (SqlDataAdapter adp = new SqlDataAdapter(@"EXEC PR_CRIACAO_TAREFA @ID_PROJETO	,@ID_ETAPA ,@TITULO ,@DESCRICAO	,@DT_INICIO	,@DT_PREVISTA", conn))
+                {
+                    adp.SelectCommand.CommandType = CommandType.Text;
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@ID_PROJETO", Convert.ToInt32(data.ID_PROJETO)));
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@ID_ETAPA", Convert.ToInt32(data.ID_ETAPA)));
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@TITULO", data.TITULO));
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@DESCRICAO", data.DESCRICAO));
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@DT_INICIO", data.DT_INICIO));
+                    adp.SelectCommand.Parameters.Add(new SqlParameter("@DT_PREVISTA", data.DT_PREVISTA));
+
+
+                    adp.Fill(dt1);
+                    if (dt1.Rows.Count > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+                throw new Exception(ex.Message);
+            }
+        }
 
     }
 }
