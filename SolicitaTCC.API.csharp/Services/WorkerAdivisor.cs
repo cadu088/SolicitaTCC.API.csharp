@@ -277,5 +277,47 @@ namespace SolicitaTCC.API.csharp.Services
             }
         }
 
+        public List<getStageTask> getStageTask()
+        {
+            try
+            {
+                SqlConnection conn = new SqlConnection(connectionString);
+                DataTable dt1 = new DataTable();
+                using (SqlDataAdapter adp = new SqlDataAdapter(@"EXEC PR_PEGA_ETAPA_TAREFA", conn))
+                {
+                    adp.SelectCommand.CommandType = CommandType.Text;
+
+                    adp.Fill(dt1);
+
+                    if (dt1.Rows.Count > 0)
+                    {
+
+                        List<getStageTask> response = new List<getStageTask>();
+
+                        foreach (DataRow row in dt1.Rows)
+                        {
+                            getStageTask request = new getStageTask();
+
+                            request.ID_ETAPA = Convert.ToInt32(row["ID_ETAPA"]);
+                            request.DESCRICAO = row["DESCRICAO"].ToString();
+
+                            response.Add(request);
+                        }
+
+                        return response;
+                    }
+                    else
+                    {
+                        throw new Exception("Nenhuma solcitação para esses parametros!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
     }
 }
